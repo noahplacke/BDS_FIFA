@@ -104,6 +104,33 @@ Last, we wanted to know which club had the highest average value of players.
 Looking at this data shows that nationality and club play a big factor into someones success. If you play for Juventus, there's a much higher chance that your valuation is above the mean player in the game.
 
 
+## Clustering
+
+One of the ways we wanted to make predictions was by clustering the data in hopes of making the clusters based on what position the player plays. To do this, we had to use PCA in order to be able to make any graphs. Only 2 features were chosen in order to make a 2D graph.
+
+Clustering can be done in with many different algorithms, and we thought comparing 3 different algorithms would shed a little light on how each works. We began with K-Means, then Spectral, and finally DBSCAN. We didn't expect clustering to do much considering we had to rely on only 2 features to make these clusters, and 2 features in this dataset holds very little information regarding what player you might be looking at. Also, another shortcoming is that you can't decide on what to make your clusters based on. I knew there were 27 positions, but making 27 clusters was difficult, so I decided on using 10 and hoping for the best so that things didn't become too cluttered. Regardless, clustering was something we wanted to visualize just to learn more about it.
+
+### K-Means Clustering
+
+We began with K-Means since that is the go-to cluster algorithm we have been taught many times and what data scientists seem to rely on often. Based on our graph below, you can see that 9 out of 10 of the clusters fell into one giant blob of mess. K-Means relies on creating central points, or centroids, that are surrounded by other points that the algorithm believes are in the same class. Because of the giant blob, most of the centroids are simply dispersed in the cloud of points. Interestingly enough, and what we were hoping for, is that there is one cluster separate from the blob. Based on how we had to clean the data and how the original data looked, this cluster must be the goalkeepers. They were the only rows of data to have no values for position chemistry, and I believe the algorithm saw that. For K-Means, we can't say much about the clusters since a majority are all together.
+
+![k-means](images/image4.png)
+
+### Spectral Clustering
+
+Spectral clustering was our second choice for what to experiment with as it is a close relative to K-Means. The same idea is present, but calculated in a different way. Instead of looking at how close the points are, spectral clustering looks at connections between the points as if they were linked nodes. This helps in situations where clusters aren't just points of high density, but dense areas in special shapes that don't fit the norm. In our case, the giant blob previously mentioned is still an issue, so spectral clustering didn't deviate too far from K-Means. One interesting thing we noticed is that there actually weren't even 10 clusters. If you look at the legend compared to the graph itself, some colors don't appear on the graph despite having a spot in the legend. Orange and purple disappear completely. We aren't sure exactly why this happened, but it is interesting that the algorithm itself decided that we didn't need 10 clusters. A final note is that it also decided that the goalkeepers are separate from the rest of the players. Our shortcomings stay the same that the blob made things very complicated.
+
+![spectral](images/image5.png)
+
+### DBSCAN
+
+Our final clustering algorithm was DBSCAN. DBSCAN is neat because it strays from the previous clustering algorithms. Instead of being told how many clusters we want to see, we rely on the algorithm to choose for us after we state the maximum distance between points for them to be considered in the same neighborhood which is called eps. For our graph to look different from the previous graphs, we changed the default eps value from .5 to .25. This change made a massive change in how the algorithm clustered, and the results were exciting. We finally split up the massive blob that looked so bad in the previous graphs. We now have 3 very distinct major cluster areas. I like to think of them as attacking positions, defending positions, and goalkeepers. The extra clusters within the attacking and defending blobs must have been more specific positions. Having 10 total clusters was a bit unnecessary but I believe that if we had a full 27, there would be some sort of distinction between them all. DBSCAN had the most promising results when it came to clustering.
+
+![dbscan](images/image6.png)
+
+
+
+
 
 
 
