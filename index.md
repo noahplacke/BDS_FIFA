@@ -130,11 +130,37 @@ Our final clustering algorithm was DBSCAN. DBSCAN is neat because it strays from
 
 ## Wage Prediction
 
-Next, we wanted to try and predict wages based on the features. The current data set has almost all numerical columns besides Nationality, Club, and Preferred Foot. We did value counts on Nationalit and Club to see if we could come up with dummy columns, but the total number of unique values for both columns were 841. Adding 841 columns into our dataset was probably not a good idea.
+Next, we wanted to try and predict wages based on the features. The current data set has almost all numerical columns besides Nationality, Club, and Preferred Foot. We did value counts on Nationality and Club to see if we could come up with dummy columns, but the total number of unique values for both columns were 841. Adding 841 columns into our dataset was probably not a good idea.
 
 ![value_counts](images/image7.png)
 
+### Additional Feature Engineering
+Since creating 841 new columns was not feasible, we needed to come up with a way to transform the Nationality and Club columns. By doing a value_counts on Nationality, we were able to see the distribution of players by country. After combing through, we decided to classify nations as "major nations" if the nation exceeded 250. Next, we aggregated the clubs and their average salary in our exploratory data analysis. By taking a look at that graph, we noticed a significant jump between the top 20 clubs with the highest average salary. We decided to make the column a 1 if the are a top 20 paid club and a 0 if they are not. Finally, for the foot preference we choose 1 for right and 0 for left.
+```#Converting preferred foot to 0 = Right and 1 = Left
+def foot_conversion(wg):
+    if wg == 'Right':
+      return 1
+    else:
+      return 0
+#Converting the nationality column if they are a major nation
+def major_nation(nt):
+  if (nt in nat_list):
+      return 1
+  else:
+      return 0
 
+#Convertint the clubs column if they are a major club
+def top_20(clb):
+  if (clb in top_20_clubs):
+      return 1
+  else:
+      return 0
+
+
+wage_df['Preferred Foot'] = wage_df['Preferred Foot'].apply(lambda x:foot_conversion(x))
+wage_df['Nationality'] = wage_df['Nationality'].apply(lambda x:major_nation(x))
+wage_df['Club'] = wage_df['Club'].apply(lambda x:top_20(x))
+```
 
 
 You can use the [editor on GitHub](https://github.com/noahplacke/BDS_FIFA/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
