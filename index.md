@@ -192,7 +192,7 @@ Results by Model Accuracy from Largest to Smallest:
 5. Linear SVR                   (0.289)
 6. ADABoostRegressor            (0.210)
 
-###Hyper Parameter Tuning
+### Hyper Parameter Tuning
 With the results, we took the top two performing models (GradientBoosting and RandomForest) and hyperparameter tuned both models
 
 ```
