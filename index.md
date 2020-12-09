@@ -162,7 +162,7 @@ wage_df['Nationality'] = wage_df['Nationality'].apply(lambda x:major_nation(x))
 wage_df['Club'] = wage_df['Club'].apply(lambda x:top_20(x))
 ```
 
-###Model Predictions
+### Model Predictions
 With the new dataset, we can start training models and see how they are performing. We first start off by splitting the dataset into train and test sets. Next, we started to feed the data into plain models with no hyperparameter tuning. The models we selected were Liner Regression, Decision Tree Regressor, Linear SVR, ADA Boost Regressor, Gradient Boosting Regressor, and Random Forest Regressor.
 ```
 X = wage_df.copy()
@@ -171,6 +171,7 @@ y = wage_df['Wage']
 
 X_train, X_test, y_train, y_test = \
     train_test_split(X, y, test_size=0.2, random_state=42)
+```
 
 Example of one of the plain model code we used.
 ```
