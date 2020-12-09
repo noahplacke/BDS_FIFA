@@ -64,7 +64,7 @@ One final bit of cleaning was done by converting the club, nationality, position
 # 27 different positions seen with y.unique(). Also need to make things numeric for the clustering
 y = fifa_df['Position']
 
-class_mapping = {label:idx for idx,label in 
+class_mapping = {label:idx for idx,label in
                  enumerate(np.unique(y))}
 fifa_df['Position'] = fifa_df['Position'].map(class_mapping)
 
@@ -72,15 +72,15 @@ y = fifa_df['Position']
 
 X = fifa_df.drop(['Position'], axis=1)
 
-class_mapping = {label:idx for idx,label in 
+class_mapping = {label:idx for idx,label in
                  enumerate(np.unique(X['Nationality']))}
 X['Nationality'] = X['Nationality'].map(class_mapping)
 
-class_mapping = {label:idx for idx,label in 
+class_mapping = {label:idx for idx,label in
                  enumerate(np.unique(X['Club']))}
 X['Club'] = X['Club'].map(class_mapping)
 
-class_mapping = {label:idx for idx,label in 
+class_mapping = {label:idx for idx,label in
                  enumerate(np.unique(X['Preferred Foot']))}
 X['Preferred Foot'] = X['Preferred Foot'].map(class_mapping)
 ```
@@ -128,8 +128,11 @@ Our final clustering algorithm was DBSCAN. DBSCAN is neat because it strays from
 
 ![dbscan](images/image6.png)
 
+## Wage Prediction
 
+Next, we wanted to try and predict wages based on the features. The current data set has almost all numerical columns besides Nationality, Club, and Preferred Foot. We did value counts on Nationalit and Club to see if we could come up with dummy columns, but the total number of unique values for both columns were 841. Adding 841 columns into our dataset was probably not a good idea.
 
+![value_counts](images/image7.png)
 
 
 
