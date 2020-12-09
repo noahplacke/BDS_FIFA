@@ -149,7 +149,7 @@ def major_nation(nt):
   else:
       return 0
 
-#Convertint the clubs column if they are a major club
+#Converting the clubs column if they are a major club
 def top_20(clb):
   if (clb in top_20_clubs):
       return 1
@@ -161,6 +161,51 @@ wage_df['Preferred Foot'] = wage_df['Preferred Foot'].apply(lambda x:foot_conver
 wage_df['Nationality'] = wage_df['Nationality'].apply(lambda x:major_nation(x))
 wage_df['Club'] = wage_df['Club'].apply(lambda x:top_20(x))
 ```
+
+###Model Predictions
+With the new dataset, we can start training models and see how they are performing. We first start off by splitting the dataset into train and test sets. Next, we started to feed the data into plain models with no hyperparameter tuning. The models we selected were Liner Regression, Decision Tree Regressor, Linear SVR, ADA Boost Regressor, Gradient Boosting Regressor, and Random Forest Regressor.
+```
+X = wage_df.copy()
+X = X.drop(['Wage'],axis =1)
+y = wage_df['Wage']
+
+X_train, X_test, y_train, y_test = \
+    train_test_split(X, y, test_size=0.2, random_state=42)
+
+Example of one of the plain model code we used.
+```
+lr = LinearRegression()
+lr.fit(X_train, y_train)
+y_pred = lr.predict(X_test)
+print('Test Accuracy: %.3f' % lr.score(X_test, y_test))
+print("Mean Squared error : %s" % mean_squared_error(y_test, y_pred))
+print("Mean Absolute error : %s" % mean_absolute_error(y_test, y_pred))
+print("R2 Score: %s" % r2_score(y_test, y_pred))
+```
+
+Results by Model Accuracy from Largest to Smallest:
+1. GradientBoostingRegressor    (0.873)
+2. RandomForestRegressor        (0.861)
+3. Linear LinearRegression      (0.823)
+4. DecisionTree Regressor       (0.754)
+5. Linear SVR                   (0.289)
+6. ADABoostRegressor            (0.210)
+
+###Hyper Parameter Tuning
+With the results, we took the top two performing models (GradientBoosting and RandomForest) and hyperparameter tuned both models
+
+```
+rfr = RandomForestRegressor()
+rfr_params = {'bootstrap': [True, False],
+ 'max_depth': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None],
+ 'max_features': ['auto', 'sqrt'],
+ 'min_samples_leaf': [1, 2, 4],
+ 'min_samples_split': [2, 5, 10],
+ 'n_estimators': [200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000]}
+rsearch = RandomizedSearchCV(rfr, rfr_params, cv=5, n_iter=10, n_jobs=5, scoring='neg_mean_squared_error', verbose=True)
+rsearch.fit(X_train, y_train)
+```
+After running grid searches for the best parameters and plugging them into the model. The models performed worse than the plain models. The best model we found was the plain GradientBoosting model.
 
 
 You can use the [editor on GitHub](https://github.com/noahplacke/BDS_FIFA/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
