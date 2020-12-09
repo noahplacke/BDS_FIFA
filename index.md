@@ -135,8 +135,11 @@ Next, we wanted to try and predict wages based on the features. The current data
 ![value_counts](images/image7.png)
 
 ### Additional Feature Engineering
+
 Since creating 841 new columns was not feasible, we needed to come up with a way to transform the Nationality and Club columns. By doing a value_counts on Nationality, we were able to see the distribution of players by country. After combing through, we decided to classify nations as "major nations" if the nation exceeded 250. Next, we aggregated the clubs and their average salary in our exploratory data analysis. By taking a look at that graph, we noticed a significant jump between the top 20 clubs with the highest average salary. We decided to make the column a 1 if the are a top 20 paid club and a 0 if they are not. Finally, for the foot preference we choose 1 for right and 0 for left.
-```#Converting preferred foot to 0 = Right and 1 = Left
+
+```
+#Converting preferred foot to 0 = Right and 1 = Left
 def foot_conversion(wg):
     if wg == 'Right':
       return 1
@@ -163,7 +166,9 @@ wage_df['Club'] = wage_df['Club'].apply(lambda x:top_20(x))
 ```
 
 ### Model Predictions
+
 With the new dataset, we can start training models and see how they are performing. We first start off by splitting the dataset into train and test sets. Next, we started to feed the data into plain models with no hyperparameter tuning. The models we selected were Liner Regression, Decision Tree Regressor, Linear SVR, ADA Boost Regressor, Gradient Boosting Regressor, and Random Forest Regressor.
+
 ```
 X = wage_df.copy()
 X = X.drop(['Wage'],axis =1)
@@ -174,6 +179,7 @@ X_train, X_test, y_train, y_test = \
 ```
 
 Example of one of the plain model code we used.
+
 ```
 lr = LinearRegression()
 lr.fit(X_train, y_train)
@@ -193,6 +199,7 @@ Results by Model Accuracy from Largest to Smallest:
 6. ADABoostRegressor            (0.210)
 
 ### Hyper Parameter Tuning
+
 With the results, we took the top two performing models (GradientBoosting and RandomForest) and hyperparameter tuned both models
 
 ```
@@ -206,6 +213,7 @@ rfr_params = {'bootstrap': [True, False],
 rsearch = RandomizedSearchCV(rfr, rfr_params, cv=5, n_iter=10, n_jobs=5, scoring='neg_mean_squared_error', verbose=True)
 rsearch.fit(X_train, y_train)
 ```
+
 After running grid searches for the best parameters and plugging them into the model. The models performed worse than the plain models. The best model we found was the plain GradientBoosting model.
 
 
