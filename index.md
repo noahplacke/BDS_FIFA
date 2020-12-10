@@ -103,6 +103,16 @@ Last, we wanted to know which club had the highest average value of players.
 
 Looking at this data shows that nationality and club play a big factor into someones success. If you play for Juventus, there's a much higher chance that your valuation is above the mean player in the game.
 
+We also wanted to see if their where certain attributes that where correlate to good players for a particular position.
+
+We initially compared how physical attributes varies for each position
+
+![value_count](images/image8.png)
+
+Second we observed the skill attributes and their relationshio with each position
+
+![value_count](images/image8.png)
+
 
 ## Clustering
 
