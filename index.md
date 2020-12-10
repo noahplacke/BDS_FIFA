@@ -242,15 +242,15 @@ One weakness of traditional predictive models is that they have no means of hand
 
 Preprocessing data for CatBoost is a lot simpler than other machine learning libraries-- you can simply pass it the entire dataset and specify which columns are categorical. However, for the best results, you should still be sure to clean your data to ensure that the model is making accurate predictions, and is not being misled. 
 
-'''
+```
 X = fifa_df.drop(["Position", "Nationality", "Club"], axis=1)
 y = fifa_df["Position"]
 categorical_features = [5] ## Referencing the index of the 'Preferred Foot' column
-'''
+```
 
 Here we remove 3 columns: 'Nationality', 'Club', and 'Position'. Nationality isn't necessarily important for the sake of predicting a player's position, and would likely do more harm than good if included. Club isn't necessarily relevant either; while a human might understand that there won't be much overlap in positions within a club (for example, it would make no sense for a club to have 5 goalkeepers), the model isn't capable of such logic so the column is best removed. Finally, Position isn't included in X because it is our dependent variable. With these removed, that just leaves 'Preferred Foot' as the lone remaining categorical feature.
 
-'''
+```
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.20, random_state=42)
 
@@ -259,12 +259,12 @@ model.fit(X_train, y_train, cat_features=categorical_features verbose_eval=100)
 
 y_pred = model.predict(X_test)
 print('Test Accuracy: %.3f' % model.score(X_test, y_test)) ## 0.596
-'''
+```
 
 When we ran CatBoost on this, the model is able to predict the position with about 59% accuracy. Though this is pretty good considering there are 26 different positions (random guessing would land you just over 4% accuracy), we weren't satisfied. To improve our results, we tried a few other preprocessing approaches. We decided to remove 1 additional column, 'International Reputation', as it likely had no bearing on a player's position. 
 Furthermore, we noticed that in our initial predictions the model was often predicting a position _mostly_ correct (for example: classifying a RB as a RWB), so we thought it might be best to generalize the positions a bit more. This would give the model a better foundation, allowing it to predict on groups of positions rather than the position itself. 
 
-'''
+```
 y_clean = []
 
 pos_list = [["CM","CAM","LCM","RCM"],["LAM","LF","LW"],["RAM","RF","RW"],["RB","RWB"],["LB","LWB"],["ST","LS","RS","CF"],["CB","LCB","RCB"],["GK"],["SM","LM","RM"],["DM","CDM","LDM","RDM"]]
@@ -275,7 +275,8 @@ for i in y:
             y_clean.append(pos[0]) ## replace the position with the updated one
             
 y = y_clean
-'''
+```
+
 When we ran the model on the updated position list, the results were much more accurate-- it was able to predict the position group with about 77% accuracy. Though clearly the more you generalize the dependent variable the more accurate the model's predictions will be, but we thought that reducing the position list from 26 to 10 was justified in our scenario-- in fact, the improvement from 59% --> 77% implies that nearly 1/2 of the improper predictions were caused by positions that were similar or statistically indistinguishable by their nature. 
 
 You can use the [editor on GitHub](https://github.com/noahplacke/BDS_FIFA/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
