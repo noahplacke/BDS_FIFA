@@ -1,8 +1,9 @@
 # Various Player Predictions Using FIFA 19 Game Data
+### By: Jerry Che, Jose Guerrero, Noah Placke, and Palmer Wenzel
 
 ## Introduction
 
-For this project, our team has chosen to focus on using FIFA video game player data to make various predictions such as what position they are most likely to play, what a players salary is, what their in game rating is, and what country they are from. All of these predictions are made using the in-game stats such as what their dribbling, shooting, or defending levels are, what their position chemistry would be, and many other factors. Different machine learning methods are used such as clustering, (**insert whatever other things we use here**). We will begin by going over how we had to clean our data to make it usable. Following that, each feature we will be predicting will receive its own section going over the methods and algorithms used for predictions and a conclusion. Finally, an overall closing conclusion will be made on the effectiveness of these features we used in relation to making predictions.
+For this project, our team has chosen to focus on using FIFA video game player data to make various predictions such as what position they are most likely to play, what a players salary is, what their in game rating is, and what country they are from. All of these predictions are made using the in-game stats such as what their dribbling, shooting, or defending levels are, what their position chemistry would be, and many other factors. Different machine learning methods are used such as clustering, CatBoost, Gradient Boosting, and Random Forests. We will begin by going over how we had to clean our data to make it usable. Following that, each feature we will be predicting will receive its own section going over the methods and algorithms used for predictions and a conclusion. Finally, an overall closing conclusion will be made on the effectiveness of these features we used in relation to making predictions.
 
 ## Motivation
 
