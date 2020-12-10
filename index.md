@@ -115,7 +115,13 @@ Second, we observed the skill attributes and their relationship with each positi
 
 ![value_count](images/image9.png)
 
-We again see patterns forming, depending on the combination of attributes we see how the different positions tend to cluster to a particular sector of the graph as expected goalkeepers tend to be strong but have very bad ball control, strikers tend to have good ball control and longsho
+We again see patterns forming, depending on the combination of attributes we see how the different positions tend to cluster to a particular sector of the graph as expected goalkeepers tend to be strong but have very bad ball control, strikers tend to have good ball control and longshots, by determining what characteristics are key for each position, it is possible to predict given a players stats where they should play, which, in reality, is not always where they are currently playing
+
+Lastly, we wanted to explore how age influenced the value of a player regardless of their overall rating 
+
+![value_count](images/image10.png)
+
+The older the player regardless of their current rating their value drops, this is likely because it's not expected for them to continue to perform at top condition for much longer, inversely we see that younger players tend to be paid less, this is likely since it is still not clear what their full potential or value is, we can also notice that the top valued players and who present the best overalls tend to be around 27 years old, this seems to be the age in which a soccer player achieves the peak of their career.
 
 ## Clustering
 
