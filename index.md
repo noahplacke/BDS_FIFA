@@ -105,11 +105,11 @@ Looking at this data shows that nationality and club play a big factor into some
 
 We also wanted to see if their where certain attributes that where correlate to good players for a particular position.
 
-We initially compared how physical attributes varies for each position
+We initially compared how physical attributes wages and overall varied for each position
 
 ![value_count](images/image8.png)
 
-Second we observed the skill attributes and their relationshio with each position
+Second we observed the skill attributes and their relationship with each position
 
 ![value_count](images/image9.png)
 
