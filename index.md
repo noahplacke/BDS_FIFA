@@ -111,7 +111,7 @@ We initially compared how physical attributes varies for each position
 
 Second we observed the skill attributes and their relationshio with each position
 
-![value_count](images/image8.png)
+![value_count](images/image9.png)
 
 
 ## Clustering
