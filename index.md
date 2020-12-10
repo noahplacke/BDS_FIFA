@@ -278,7 +278,7 @@ for i in y:
             
 y = y_clean
 ```
-![grouped_catboost](images/image10.png)
+![grouped_catboost](images/image12.png)
 
 When we ran the model on the updated position list, the results were much more accurate-- it was able to predict the position group with about 77% accuracy. Though clearly the more you generalize the dependent variable the more accurate the model's predictions will be, but we thought that reducing the position list from 26 to 10 was justified in our scenario-- in fact, the improvement from 59% --> 77% implies that nearly 1/2 of the improper predictions were caused by positions that were similar or statistically indistinguishable by their nature. 
 
