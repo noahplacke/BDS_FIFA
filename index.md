@@ -236,7 +236,7 @@ rsearch.fit(X_train, y_train)
 After running grid searches for the best parameters and plugging them into the model. The models performed worse than the plain models. The best model we found was the plain GradientBoosting model.
 
 
-### Categorical feature prediction with CatBoost
+## Categorical Feature Prediction with CatBoost
 
 One weakness of traditional predictive models is that they have no means of handling categorical data. Enter: CatBoost, an open-sourced gradient boosting library with out-of-the-box categorical feature support. We thought it might be interesting to use this model to attempt to predict which position an individual plays, based on the statistical information provided in the dataset. 
 
@@ -279,28 +279,6 @@ y = y_clean
 
 When we ran the model on the updated position list, the results were much more accurate-- it was able to predict the position group with about 77% accuracy. Though clearly the more you generalize the dependent variable the more accurate the model's predictions will be, but we thought that reducing the position list from 26 to 10 was justified in our scenario-- in fact, the improvement from 59% --> 77% implies that nearly 1/2 of the improper predictions were caused by positions that were similar or statistically indistinguishable by their nature. 
 
-You can use the [editor on GitHub](https://github.com/noahplacke/BDS_FIFA/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Conclusion
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+After performing various tests relating to making predictions for attributes, we were happy with how our results came out. We were able to interpret what our models were doing and what the data meant in terms of making predictions. For clustering, we couldn't extract much data but we were able to see how the different clustering methods worked. Wage prediction went well with a very high accuracy which shows that hyperparameter tuning makes a big difference in results and we could go deeper if needed. When it came to predicting position using CatBoost, we found that our predictions were fairly accurate, but they were not perfect. The lack of perfection comes from the fact that that certain players are well rounded or some positions are so similar that it is hard to predict what position the player would be. Overall with our models, there are so many factors that go into the predictions as far as features go that it would take many more hours to perfect what we have began in this project. We are proud of our results and would like to have made even better models than we already have. Working with FIFA player data was an interesting project and our findings were even better than we hoped for.
