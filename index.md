@@ -261,7 +261,10 @@ model.fit(X_train, y_train, cat_features=categorical_features verbose_eval=100)
 y_pred = model.predict(X_test)
 print('Test Accuracy: %.3f' % model.score(X_test, y_test)) ## 0.596
 ```
-![base_catboost](images/image11.png)
+
+Basic CatBoost Predictions             |  Basic CatBoost Learning Rate
+:-------------------------:|:-------------------------:
+![base_catboost](images/image11.png)  |  ![base_catboost_LR](images/image13.png)
 
 When we ran CatBoost on this, the model is able to predict the position with about 59% accuracy. Though this is pretty good considering there are 26 different positions (random guessing would land you just over 4% accuracy), we weren't satisfied. To improve our results, we tried a few other preprocessing approaches. We decided to remove 1 additional column, 'International Reputation', as it likely had no bearing on a player's position. 
 Furthermore, we noticed that in our initial predictions the model was often predicting a position _mostly_ correct (for example: classifying a RB as a RWB), so we thought it might be best to generalize the positions a bit more. This would give the model a better foundation, allowing it to predict on groups of positions rather than the position itself. 
@@ -279,8 +282,11 @@ for i in y:
 y = y_clean
 ```
 ![grouped_catboost](images/image12.png)
+Improved CatBoost Predictions             |  Improved CatBoost Learning Rate
+:-------------------------:|:-------------------------:
+![grouped_catboost](images/image12.png)  |  ![grouped_catboost_LR](images/image14.png)
 
-When we ran the model on the updated position list, the results were much more accurate-- it was able to predict the position group with about 77% accuracy. Though clearly the more you generalize the dependent variable the more accurate the model's predictions will be, but we thought that reducing the position list from 26 to 10 was justified in our scenario-- in fact, the improvement from 59% --> 77% implies that nearly 1/2 of the improper predictions were caused by positions that were similar or statistically indistinguishable by their nature. 
+When we ran the model on the updated position list, the results were much more accurate-- it was able to predict the position group with about 77% accuracy. The learning rate  made visible strides compared to the previous model-- the curve flattens at a much earlier & lower value as a result of our grouping methods. Clearly the more you generalize the dependent variable the more accurate the model's predictions will be, but we thought that reducing the position list from 26 to 10 was justified in our scenario-- in fact, the improvement from 59% --> 77% implies that nearly 1/2 of the improper predictions were caused by positions that were similar or statistically indistinguishable by their nature.
 
 ## Conclusion
 
