@@ -281,7 +281,7 @@ for i in y:
             
 y = y_clean
 ```
-![grouped_catboost](images/image12.png)
+
 Improved CatBoost Predictions             |  Improved CatBoost Learning Rate
 :-------------------------:|:-------------------------:
 ![grouped_catboost](images/image12.png)  |  ![grouped_catboost_LR](images/image14.png)
